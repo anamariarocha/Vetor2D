@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vetor2D</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <canvas width="720" height="480"></canvas>
+        <script>
+            var desenho2D = [
+                {x: 20, y: 10},
+                {x: 100, y: 10},
+                {x: 110, y: 90},
+                {x: 10, y: 90}
+            ];
+            var canvas = document.querySelector("canvas");
+            var ctx = canvas.getContext("2d");
+
+            const renderiza = function(){
+                ctx.fillStyle = "blue";
+                ctx.beginPath();
+                ctx.moveTo(desenho2D[0].x,desenho2D[0].y);
+                for(let vertice of desenho2D) {
+                    ctx.lineTo(vertice.x, vertice.y);
+                }
+                ctx.closePath();
+                ctx.fill();
+            };
+            const translate = function(tx, ty) {
+                for(let vertice of desenho2D) {
+                    vertice.x += tx;
+                    vertice.y += ty;
+                }
+            };
+            const scale = function(s) {
+                for(let vertice of desenho2D) {
+                    vertice.x *= s;
+                    vertice.y *= s;
+                }
+            };
+            scale(4);
+            translate(30, 30);
+            renderiza();
+        </script>
+    </body>
+</html>
